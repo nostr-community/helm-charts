@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "application.fullname" . }}
+  namespace: {{ template "application.namespace" . }}
+  labels:
+    {{- include "application.defaultLabels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "application.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "application.defaultLabels" . | nindent 8 }}
+    spec:
+      securityContext:
+        runAsUser: 100
+        runAsGroup: 100
+      containers:
+        - name: relay
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config-volume
+              mountPath: /usr/src/app/config.toml
+              subPath: config.toml
+            - name: db-volume
+              mountPath: /usr/src/app/db
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "application.fullname" . }}-config
+        - name: db-volume
+          persistentVolumeClaim:
+            claimName: {{ include "application.fullname" . }}-data
