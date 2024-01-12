@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nostr-rs-relay
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nostr-rs-relay
+  template:
+    metadata:
+      labels:
+        app: nostr-rs-relay
+    spec:
+      securityContext:
+        runAsUser: 100
+        runAsGroup: 100
+      containers:
+        - name: nostr-rs-relay
+          image: scsibug/nostr-rs-relay
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config-volume
+              mountPath: /usr/src/app/config.toml
+              subPath: config.toml
+            - name: db-volume
+              mountPath: /usr/src/app/db
+      volumes:
+        - name: config-volume
+          configMap:
+            name: nostr-rs-relay-config
+        - name: db-volume
+          persistentVolumeClaim:
+            claimName: nostr-rs-relay-data

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nostr-rs-relay
+spec:
+  selector:
+    app: nostr-rs-relay
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
