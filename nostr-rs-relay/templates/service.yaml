@@ -1,11 +1,19 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nostr-rs-relay
+  name: {{ include "application.fullname" . }}
+  namespace: {{ template "application.namespace" . }}
+  labels:
+    {{- include "application.defaultLabels" . | nindent 4 }}
 spec:
-  selector:
-    app: nostr-rs-relay
+  type: {{ .Values.service.type }}
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      {{- if and (eq .Values.service.type "NodePort") .Values.service.nodePort }}
+      nodePort: {{ .Values.service.nodePort }}
+      {{- end }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "application.selectorLabels" . | nindent 4 }}

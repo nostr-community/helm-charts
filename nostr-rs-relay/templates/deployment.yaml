@@ -1,23 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nostr-rs-relay
+  name: {{ include "application.fullname" . }}
+  namespace: {{ template "application.namespace" . }}
+  labels:
+    {{- include "application.defaultLabels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nostr-rs-relay
+      {{- include "application.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: nostr-rs-relay
+        {{- include "application.defaultLabels" . | nindent 8 }}
     spec:
       securityContext:
         runAsUser: 100
         runAsGroup: 100
       containers:
-        - name: nostr-rs-relay
-          image: scsibug/nostr-rs-relay
+        - name: relay
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 8080
           volumeMounts:
@@ -29,7 +33,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: nostr-rs-relay-config
+            name: {{ include "application.fullname" . }}-config
         - name: db-volume
           persistentVolumeClaim:
-            claimName: nostr-rs-relay-data
+            claimName: {{ include "application.fullname" . }}-data

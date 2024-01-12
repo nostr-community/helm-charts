@@ -1,23 +1,37 @@
+{{- if .Values.ingress.enabled }}
+{{- $serviceName := include "application.fullname" . }}
+{{- $servicePort := .Values.service.port }}
+{{- $ingressPath := .Values.ingress.path }}
+{{- $ingressClassName := .Values.ingress.className }}
+{{- $ingressPathType := .Values.ingress.pathType }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nostr-rs-relay-ingress
+  name: {{ include "application.fullname" . }}
+  namespace: {{ template "application.namespace" . }}
+  labels:
+    {{- include "application.defaultLabels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
   annotations:
-    kubernetes.io/ingress.class: public
-    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
-  tls:
-    - hosts:
-        - rs1.nostr.b-n.space
-      secretName: rs1-tls
+  ingressClassName: {{ $ingressClassName }}
   rules:
-    - host: rs1.nostr.b-n.space
+    {{- range $host := .Values.ingress.hosts }}
+    - host: {{ $host }}
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: {{ $ingressPath }}
+            pathType: {{ $ingressPathType }}
             backend:
               service:
-                name: nostr-rs-relay
+                name: {{ $serviceName }}
                 port:
-                  number: 80
+                  number: {{ $servicePort }}
+    {{- end -}}
+  {{- with .Values.ingress.tls }}
+  tls:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{ end }}

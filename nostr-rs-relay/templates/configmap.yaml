@@ -1,15 +1,18 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nostr-rs-relay-config
+  name: {{ include "application.fullname" . }}-config
+  namespace: {{ template "application.namespace" . }}
+  labels:
+    {{- include "application.defaultLabels" . | nindent 4 }}
 data:
   config.toml: |
     # Nostr-rs-relay configuration
     
     [info]
     # The advertised URL for the Nostr websocket.
-    relay_url = "wss://rs1.nostr.b-n.space"
-    
+    relay_url = "wss://{{ include "application.domain" . }}"
+
     # Relay information for clients.  Put your unique server name here.
     name = "nostr-rs-relay"
     
@@ -227,7 +230,9 @@ data:
     # Terms of service
     terms_message = """
     This service (and supporting services) are provided "as is", without warranty of any kind, express or implied.
-    
+
+    Yo! {{ include "application.domain" . }}
+
     By using this service, you agree:
     * Not to engage in spam or abuse the relay service
     * Not to disseminate illegal content

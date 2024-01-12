@@ -1,7 +1,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nostr-rs-relay-data
+  name: {{ include "application.fullname" . }}-data
+  namespace: {{ template "application.namespace" . }}
+  labels:
+    {{- include "application.defaultLabels" . | nindent 4 }}
 spec:
   accessModes:
     - ReadWriteOnce
