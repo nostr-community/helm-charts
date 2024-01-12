@@ -1,0 +1,11 @@
+apiVersion: v1
+entries:
+  nostr-rs-relay:
+    - apiVersion: v2
+      created: 2024-01-12T00:00:00.000Z # Use the current date and time
+      description: A Helm chart for Kubernetes to deploy the nostr-rs-relay application
+      digest: abc123 # Replace with your package digest
+      name: nostr-rs-relay
+      urls:
+        - https://nostr-community.github.io/helm-charts/nostr-rs-relay-0.1.0.tgz
+      version: 0.1.0
