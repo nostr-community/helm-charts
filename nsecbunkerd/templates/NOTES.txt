@@ -1,0 +1,8 @@
+Thank you for installing {{ include "application.name" . }}!
+
+{{- if .Values.ingress.enabled }}
+Your application is now available at http://{{ index .Values.ingress.hosts 0 }}
+{{- end }}
+
+To see the status of your deployment, run:
+kubectl get deployment -n {{ include "application.namespace" . }} {{ include "application.fullname" . }}
