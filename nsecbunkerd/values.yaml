@@ -1,0 +1,63 @@
+# Default values for nsecbunkerd.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Provide a name in place of prometheus-pushgateway for `app:` labels
+nameOverride: ""
+
+# Provide a name to substitute for the full names of resources
+fullnameOverride: ""
+
+# Provide a namespace to substitude for the namespace on resources
+namespaceOverride: ""
+
+image:
+  repository: nourspace/nsecbunkerd
+  # if not set appVersion field from Chart.yaml is used
+  tag: ""
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 3000
+  targetPort: 3000
+  # nodePort: 32100
+
+
+## Configure ingress resource that allow you to access the
+## pushgateway installation. Set up the URL
+## ref: http://kubernetes.io/docs/user-guide/ingress/
+##
+
+ingress:
+  ## Enable Ingress.
+  enabled: false
+  hosts:
+    -  "nsecbunker.domain.com"
+  # AWS ALB requires path of /*
+  className: ""
+  path: /
+  pathType: ImplementationSpecific
+
+  ## Annotations.
+  ##
+  # annotations:
+  #   kubernetes.io/ingress.class: nginx
+  #   kubernetes.io/tls-acme: 'true'
+
+  ## TLS configuration.
+  ## Secrets must be manually created in the namespace.
+  ##
+  # tls:
+  #   - secretName: pushgateway-tls
+  #     hosts:
+  #       - pushgateway.domain.com
+
+# NSecBunker
+database_file: /app/data/nsecbunker.db
+config_file: /app/data/nsecbunker.json
+
+relays: []
+adminRelays: []
+adminNPubs: []
+notifyAdminsOnBoot: true

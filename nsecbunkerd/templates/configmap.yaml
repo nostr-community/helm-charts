@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "application.fullname" . }}-config
+  namespace: {{ template "application.namespace" . }}
+  labels:
+    {{- include "application.defaultLabels" . | nindent 4 }}
+data:
+  # Fixme (Nour): we need something like a config merge as simply mounting this one will overwrite user settings
+  # Fixme (Nour): how to set the `admin.key`
+  nsecbunker.json: |
+    {
+      "nostr": {
+        "relays": [
+          {{- range $index, $relay := .Values.relays }}
+          {{- if $index }},{{ end }}
+          "{{ $relay }}"
+          {{- end }}
+        ]
+      },
+      "authPort": {{ .Values.service.targetPort }},
+      "authHost": "0.0.0.0",
+      "admin": {
+        "npubs": [
+          {{- range $index, $relay := .Values.adminNPubs }}
+          {{- if $index }},{{ end }}
+          "{{ $relay }}"
+          {{- end }}
+        ],
+        "adminRelays": [
+          {{- range $index, $relay := .Values.adminRelays }}
+          {{- if $index }},{{ end }}
+          "{{ $relay }}"
+          {{- end }}
+        ],
+        "key": "aaaaaaaa",
+        "notifyAdminsOnBoot": {{ .Values.notifyAdminsOnBoot }}
+      },
+      "baseUrl": "https://{{ include "application.domain" . }}",
+      "database": "sqlite://{{ .Values.database_file }}",
+      "logs": "/app/data/nsecbunker.log",
+      "keys": {},
+      "verbose": false,
+      "domains": {}
+    }
