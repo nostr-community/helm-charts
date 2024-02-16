@@ -1,0 +1,27 @@
+# Default values for nostr-rs-relay.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Provide a name in place of prometheus-pushgateway for `app:` labels
+nameOverride: ""
+
+# Provide a name to substitute for the full names of resources
+fullnameOverride: ""
+
+# Provide a namespace to substitude for the namespace on resources
+namespaceOverride: ""
+
+image:
+  repository: nourspace/dvm-kit
+  # if not set appVersion field from Chart.yaml is used
+  tag: ""
+  pullPolicy: IfNotPresent
+
+env:
+  NOSTR_ADMIN: nsec
+  NOSTR_RELAYS: wss://dev-relay.kube.b-n.space
+
+dvms_list:
+  - dvm_echo.Echo
+
+dvms: {}

@@ -1,0 +1,6 @@
+Thank you for installing {{ include "application.name" . }}!
+
+Your DVM is now running on {{ .Values.env.NOSTR_RELAYS }}
+
+To see the status of your deployment, run:
+kubectl get deployment -n {{ include "application.namespace" . }} {{ include "application.fullname" . }}
