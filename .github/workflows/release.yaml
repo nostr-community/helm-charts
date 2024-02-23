@@ -3,7 +3,7 @@ name: Release Charts
 on:
   push:
     branches:
-      - nour/feat/gh-actions
+      - main
 
 jobs:
   release:
