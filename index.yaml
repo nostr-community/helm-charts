@@ -1,5 +1,28 @@
 apiVersion: v1
 entries:
+  nostr-dvm-kit:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2024-02-23T14:11:13.823227953Z"
+    description: A Helm chart for Kubernetes to deploy a nostr dvm-kit application
+    digest: 9f0b356bca94813fb06b50ae5bf676ec5dec5339e7cb23fa26d8f25b7262dbb3
+    home: https://github.com/nourspace/nostr-dvm-kit/tags
+    keywords:
+    - nostr
+    - dvm
+    - python
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: info@nour.space
+      name: nourspace
+    name: nostr-dvm-kit
+    sources:
+    - https://github.com/nostr-community/helm-charts
+    - https://github.com/nourspace/nostr-dvm-kit
+    type: application
+    urls:
+    - https://github.com/nostr-community/helm-charts/releases/download/nostr-dvm-kit-0.1.0/nostr-dvm-kit-0.1.0.tgz
+    version: 0.1.0
   nostr-rs-relay:
   - apiVersion: v2
     created: "2024-01-12T00:00:00Z"
@@ -32,4 +55,4 @@ entries:
     urls:
     - https://github.com/nostr-community/helm-charts/releases/download/nsecbunkerd-0.1.0/nsecbunkerd-0.1.0.tgz
     version: 0.1.0
-generated: "2024-02-23T14:06:29.927403642Z"
+generated: "2024-02-23T14:11:13.823238402Z"
