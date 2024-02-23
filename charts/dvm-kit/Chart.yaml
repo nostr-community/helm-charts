@@ -1,18 +1,18 @@
 apiVersion: v2
-description: A Helm chart for Kubernetes to deploy the nostr-rs-relay application
+description: A Helm chart for Kubernetes to deploy a nostr dvm-kit application
 type: application
 maintainers:
   - name: nourspace
     email: info@nour.space
-name: nostr-rs-relay
+name: nostr-dvm-kit
 sources:
   - https://github.com/nostr-community/helm-charts
-  - https://github.com/scsibug/nostr-rs-relay
+  - https://github.com/nourspace/nostr-dvm-kit
 version: 0.1.0
 appVersion: latest
 kubeVersion: ">=1.19.0-0"
-home: https://github.com/scsibug/nostr-rs-relay/tags
+home: https://github.com/nourspace/nostr-dvm-kit/tags
 keywords:
   - nostr
-  - relay
-  - rust
+  - dvm
+  - python
