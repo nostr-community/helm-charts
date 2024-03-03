@@ -41,3 +41,4 @@ Kubernetes: `>=1.19.0-0`
 | service.port | int | `8080` |  |
 | service.targetPort | int | `8080` |  |
 | service.type | string | `"ClusterIP"` |  |
+

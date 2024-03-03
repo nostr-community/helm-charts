@@ -33,7 +33,7 @@ data:
           "{{ $relay }}"
           {{- end }}
         ],
-        "key": "aaaaaaaa",
+        "key": "{{ .Values.adminNSec }}",
         "notifyAdminsOnBoot": {{ .Values.notifyAdminsOnBoot }}
       },
       "baseUrl": "https://{{ include "application.domain" . }}",

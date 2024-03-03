@@ -60,4 +60,5 @@ config_file: /app/data/nsecbunker.json
 relays: []
 adminRelays: []
 adminNPubs: []
+adminNSec: hex-nsec
 notifyAdminsOnBoot: true

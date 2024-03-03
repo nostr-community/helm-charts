@@ -37,3 +37,4 @@ Kubernetes: `>=1.19.0-0`
 | image.tag | string | `""` |  |
 | nameOverride | string | `""` |  |
 | namespaceOverride | string | `""` |  |
+

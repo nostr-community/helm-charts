@@ -8,7 +8,7 @@ name: nsecbunkerd
 sources:
   - https://github.com/nostr-community/helm-charts
   - https://github.com/kind-0/nsecbunkerd
-version: 0.1.0
+version: 0.1.1
 appVersion: latest
 kubeVersion: ">=1.19.0-0"
 home: https://github.com/kind-0/nsecbunkerd/tags
