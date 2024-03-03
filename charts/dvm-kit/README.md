@@ -1,12 +1,12 @@
-# nostr-rs-relay
+# nostr-dvm-kit
 
 ![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
-A Helm chart for Kubernetes to deploy the nostr-rs-relay application
+A Helm chart for Kubernetes to deploy a nostr dvm-kit application
 
 This helm chart is maintained and released by the nostr-community on a best effort basis.
 
-**Homepage:** <https://github.com/scsibug/nostr-rs-relay/tags>
+**Homepage:** <https://github.com/nourspace/nostr-dvm-kit/tags>
 
 ## Maintainers
 
@@ -17,7 +17,7 @@ This helm chart is maintained and released by the nostr-community on a best effo
 ## Source Code
 
 * <https://github.com/nostr-community/helm-charts>
-* <https://github.com/scsibug/nostr-rs-relay>
+* <https://github.com/nourspace/nostr-dvm-kit>
 
 ## Requirements
 
