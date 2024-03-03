@@ -1,0 +1,72 @@
+apiVersion: v1
+entries:
+  nostr-dvm-kit:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2024-03-03T14:44:07.504679511Z"
+    description: A Helm chart for Kubernetes to deploy a nostr dvm-kit application
+    digest: 8ef4d64d6fc8f5d95fcf519b708279a8b3b85ee421695ddd3452c4dc17f73d50
+    home: https://github.com/nourspace/nostr-dvm-kit/tags
+    keywords:
+    - nostr
+    - dvm
+    - python
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: info@nour.space
+      name: nourspace
+    name: nostr-dvm-kit
+    sources:
+    - https://github.com/nostr-community/helm-charts
+    - https://github.com/nourspace/nostr-dvm-kit
+    type: application
+    urls:
+    - https://github.com/nostr-community/helm-charts/releases/download/nostr-dvm-kit-0.1.0/nostr-dvm-kit-0.1.0.tgz
+    version: 0.1.0
+  nostr-rs-relay:
+  - apiVersion: v2
+    appVersion: 0.8.13
+    created: "2024-03-03T14:44:07.628333309Z"
+    description: A Helm chart for Kubernetes to deploy the nostr-rs-relay application
+    digest: 32b2a2da962abd7693b609de7423041d7bc653c48356c9df27b992545126ee0c
+    home: https://github.com/scsibug/nostr-rs-relay/tags
+    keywords:
+    - nostr
+    - relay
+    - rust
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: info@nour.space
+      name: nourspace
+    name: nostr-rs-relay
+    sources:
+    - https://github.com/nostr-community/helm-charts
+    - https://github.com/scsibug/nostr-rs-relay
+    type: application
+    urls:
+    - https://github.com/nostr-community/helm-charts/releases/download/nostr-rs-relay-0.1.0/nostr-rs-relay-0.1.0.tgz
+    version: 0.1.0
+  nsecbunkerd:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2024-03-03T14:44:07.738883278Z"
+    description: A Helm chart for Kubernetes to deploy the nsecbunkerd application
+    digest: 891a907e1e732b3f14c9effd8e3506570a53cef0429025e507276a339b230386
+    home: https://github.com/kind-0/nsecbunkerd/tags
+    keywords:
+    - nostr
+    - relay
+    - rust
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: info@nour.space
+      name: nourspace
+    name: nsecbunkerd
+    sources:
+    - https://github.com/nostr-community/helm-charts
+    - https://github.com/kind-0/nsecbunkerd
+    type: application
+    urls:
+    - https://github.com/nostr-community/helm-charts/releases/download/nsecbunkerd-0.1.0/nsecbunkerd-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-03-03T14:44:07.7388896Z"
