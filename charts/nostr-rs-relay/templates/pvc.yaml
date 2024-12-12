@@ -1,3 +1,4 @@
+{{ if eq .Values.configMap.database.engine "sqlite" }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -10,4 +11,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: {{ .Values.sqlite.pvClaim.size }}
+{{ end }}
