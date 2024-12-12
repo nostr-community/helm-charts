@@ -65,11 +65,11 @@ sqlite:
   pvClaim:
     size: 10Gi
 
-extraVolumeMounts:
-  - name: config-volume
-    mountPath: /usr/src/app/config.toml
-    subPath: config.toml
-extraVolumes:
-  - name: config-volume
-    configMap:
-      name: nostr-rs-relay
+extraVolumeMounts: {}
+  #  - name: config-volume
+  #    mountPath: /usr/src/app/config.toml
+  #    subPath: config.toml
+extraVolumes: {}
+  #  - name: config-volume
+  #    configMap:
+  #      name: nostr-rs-relay
