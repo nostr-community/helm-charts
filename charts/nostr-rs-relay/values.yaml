@@ -23,6 +23,14 @@ service:
   targetPort: 8080
   # nodePort: 32100
 
+configMap:
+  enabled: false
+  # relayUrl: wss://your.nostr.domain/
+  name: nostr-rs-relay
+  description: "A newly created nostr-rs-relay.\n\nCustomize this with your own info."
+
+  database:
+    engine: sqlite # or 'postgresql'
 
 ## Configure ingress resource that allow you to access the
 ## pushgateway installation. Set up the URL
@@ -52,3 +60,16 @@ ingress:
   #   - secretName: pushgateway-tls
   #     hosts:
   #       - pushgateway.domain.com
+
+sqlite:
+  pvClaim:
+    size: 10Gi
+
+extraVolumeMounts: {}
+  #  - name: config-volume
+  #    mountPath: /usr/src/app/config.toml
+  #    subPath: config.toml
+extraVolumes: {}
+  #  - name: config-volume
+  #    configMap:
+  #      name: nostr-rs-relay

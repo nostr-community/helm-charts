@@ -25,15 +25,29 @@ spec:
           ports:
             - containerPort: 8080
           volumeMounts:
+          {{- if .Values.configMap.enabled }}
             - name: config-volume
               mountPath: /usr/src/app/config.toml
               subPath: config.toml
+          {{- end }}
+          {{- if eq .Values.configMap.database.engine "sqlite" }}
             - name: db-volume
               mountPath: /usr/src/app/db
+          {{- end }}
+{{- if .Values.extraVolumeMounts }}
+{{ toYaml .Values.extraVolumeMounts | indent 12 }}
+{{- end }}
       volumes:
+        {{- if .Values.configMap.enabled }}
         - name: config-volume
           configMap:
             name: {{ include "application.fullname" . }}-config
+        {{- end }}
+        {{- if eq .Values.configMap.database.engine "sqlite" }}
         - name: db-volume
           persistentVolumeClaim:
             claimName: {{ include "application.fullname" . }}-data
+        {{- end }}
+{{- if .Values.extraVolumes }}
+{{ toYaml .Values.extraVolumes | indent 8 }}
+{{- end }}
